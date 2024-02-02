@@ -16,6 +16,8 @@ metadata:
   name: text-generation-inference-on-push
   namespace: rhoai-tenant
 spec:
+  timeouts:
+    pipeline: "4h"
   params:
   - name: dockerfile
     value: Dockerfile
@@ -221,6 +223,7 @@ spec:
         - name: kind
           value: task
         resolver: bundles
+      timeout: "3h"
       when:
       - input: $(tasks.init.results.build)
         operator: in
