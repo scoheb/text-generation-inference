@@ -218,12 +218,13 @@ spec:
       taskRef:
         params:
         - name: name
-          value: buildah
+          value: buildah-24gb
         - name: bundle
-          value: quay.io/redhat-appstudio-tekton-catalog/task-buildah:0.1@sha256:1ee1d570b3cf7feaf85a22c828076e798a57266ffcfea41c1aa0e9f85b0a885a
+          value: quay.io/redhat-appstudio-tekton-catalog/task-buildah-24gb:0.1@sha256:5161f8473df097bc1b97be450a675f55f296c287f1e897ca297c5f8ca0a041da
         - name: kind
           value: task
         resolver: bundles
+      timeout: "7h"
       when:
       - input: $(tasks.init.results.build)
         operator: in
