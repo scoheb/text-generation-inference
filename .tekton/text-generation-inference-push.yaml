@@ -2,19 +2,19 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   annotations:
-    build.appstudio.openshift.io/repo: https://github.com/rhoai-rhtap/text-generation-inference?rev={{revision}}
+    build.appstudio.openshift.io/repo: https://github.com/scoheb/text-generation-inference?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "main"
+      == "patch-1"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: kserve
     appstudio.openshift.io/component: text-generation-inference
     pipelines.appstudio.openshift.io/type: build
   name: text-generation-inference-on-push
-  namespace: rhoai-tenant
+  namespace: shebert-tenant
 spec:
   timeouts:
     pipeline: "8h"
@@ -24,7 +24,7 @@ spec:
   - name: git-url
     value: '{{source_url}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/rhoai-tenant/kserve/text-generation-inference:{{revision}}
+    value: quay.io/redhat-user-workloads/shebert-tenant/kserve/text-generation-inference:{{revision}}
   - name: path-context
     value: .
   - name: revision
